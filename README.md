@@ -41,5 +41,5 @@ You must run and report results for the following three `(N, p)` configurations,
 
 1. Source code implementing the baseline.
 2. A short benchmarking report in FT3, including: verification that your `β` matches `β_true` within tolerance, and execution time for each configuration above (averaged over multiple runs, as usual).
-  - The benchmarking will show results with binaries built with {\tt gcc-10.1.0}, {\tt icc 2021.3.0} and {\tt icx 2021.3.0} using these optimization levels: {\tt -O0}, {\tt -O2}, {\tt -O3} and {\tt -Ofast} (include -march=native in every level greater than O0).
+  - The benchmarking will show results with binaries built with `gcc-10.1.0`, `icc 2021.3.0` and `icx 2021.3.0` using these optimization levels: `-O0`, `-O2`, `-O3` and `-Ofast` (include -march=native in every level greater than `O0`).
   - Consider the total execution time for the linear regression computation, after allocating and generating the data structures.
