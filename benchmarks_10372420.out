@@ -1,0 +1,315 @@
+slurmstepd: info: Setting TMPDIR to /scratch/10372420. Previous errors about TMPDIR can be discarded
+------------------------------------------------------------------------
+Loading GCC (cesga/2020 — Gentoo prefix GCC 10.1.0)...
+------------------------------------------------------------------------
+gcc (Gentoo 10.1.0-r2 p3) 10.1.0
+Compiling with gcc -O0...
+========================================================================
+ Running Benchmarks for Compiler: GCC 10.1.0 (-O0)
+========================================================================
+
+--- Configuration: N = 20000, p = 50 ---
+N = 20000, p = 50
+Compute time: 0.342354 s
+Max |beta - beta_true|: 0.000163
+RMS |beta - beta_true|: 0.000061
+
+--- Configuration: N = 50000, p = 300 ---
+N = 50000, p = 300
+Compute time: 30.695136 s
+Max |beta - beta_true|: 0.000157
+RMS |beta - beta_true|: 0.000046
+
+--- Configuration: N = 2000, p = 2000 ---
+N = 2000, p = 2000
+Compute time: 45.201550 s
+Max |beta - beta_true|: 0.605765
+RMS |beta - beta_true|: 0.179134
+
+Compiling with gcc -O2 -march=native...
+========================================================================
+ Running Benchmarks for Compiler: GCC 10.1.0 (-O2 -march=native)
+========================================================================
+
+--- Configuration: N = 20000, p = 50 ---
+N = 20000, p = 50
+Compute time: 0.238556 s
+Max |beta - beta_true|: 0.000163
+RMS |beta - beta_true|: 0.000061
+
+--- Configuration: N = 50000, p = 300 ---
+N = 50000, p = 300
+Compute time: 20.537071 s
+Max |beta - beta_true|: 0.000157
+RMS |beta - beta_true|: 0.000046
+
+--- Configuration: N = 2000, p = 2000 ---
+N = 2000, p = 2000
+Compute time: 19.302883 s
+Max |beta - beta_true|: 0.605765
+RMS |beta - beta_true|: 0.179134
+
+Compiling with gcc -O3 -march=native...
+========================================================================
+ Running Benchmarks for Compiler: GCC 10.1.0 (-O3 -march=native)
+========================================================================
+
+--- Configuration: N = 20000, p = 50 ---
+N = 20000, p = 50
+Compute time: 0.237044 s
+Max |beta - beta_true|: 0.000163
+RMS |beta - beta_true|: 0.000061
+
+--- Configuration: N = 50000, p = 300 ---
+N = 50000, p = 300
+Compute time: 22.091942 s
+Max |beta - beta_true|: 0.000157
+RMS |beta - beta_true|: 0.000046
+
+--- Configuration: N = 2000, p = 2000 ---
+N = 2000, p = 2000
+Compute time: 18.154341 s
+Max |beta - beta_true|: 0.605765
+RMS |beta - beta_true|: 0.179134
+
+Compiling with gcc -Ofast -march=native...
+========================================================================
+ Running Benchmarks for Compiler: GCC 10.1.0 (-Ofast -march=native)
+========================================================================
+
+--- Configuration: N = 20000, p = 50 ---
+N = 20000, p = 50
+Compute time: 0.237188 s
+Max |beta - beta_true|: 0.000163
+RMS |beta - beta_true|: 0.000061
+
+--- Configuration: N = 50000, p = 300 ---
+N = 50000, p = 300
+Compute time: 22.479349 s
+Max |beta - beta_true|: 0.000157
+RMS |beta - beta_true|: 0.000046
+
+--- Configuration: N = 2000, p = 2000 ---
+N = 2000, p = 2000
+Compute time: 60.799186 s
+Max |beta - beta_true|: 0.605765
+RMS |beta - beta_true|: 0.179134
+
+------------------------------------------------------------------------
+Loading Intel / icc (cesga/2020 + intel)...
+------------------------------------------------------------------------
+icc (ICC) 2021.3.0 20210609
+Compiling with icc -O0...
+========================================================================
+ Running Benchmarks for Compiler: Intel ICC (-O0)
+========================================================================
+
+--- Configuration: N = 20000, p = 50 ---
+N = 20000, p = 50
+Compute time: 0.349905 s
+Max |beta - beta_true|: 0.000163
+RMS |beta - beta_true|: 0.000061
+
+--- Configuration: N = 50000, p = 300 ---
+N = 50000, p = 300
+Compute time: 39.563910 s
+Max |beta - beta_true|: 0.000157
+RMS |beta - beta_true|: 0.000046
+
+--- Configuration: N = 2000, p = 2000 ---
+N = 2000, p = 2000
+Compute time: 78.224068 s
+Max |beta - beta_true|: 0.605765
+RMS |beta - beta_true|: 0.179134
+
+Compiling with icc -O2 -xHost...
+========================================================================
+ Running Benchmarks for Compiler: Intel ICC (-O2 -xHost)
+========================================================================
+
+--- Configuration: N = 20000, p = 50 ---
+N = 20000, p = 50
+Compute time: 0.009115 s
+Max |beta - beta_true|: 0.000163
+RMS |beta - beta_true|: 0.000061
+
+--- Configuration: N = 50000, p = 300 ---
+N = 50000, p = 300
+Compute time: 0.845866 s
+Max |beta - beta_true|: 0.000157
+RMS |beta - beta_true|: 0.000046
+
+--- Configuration: N = 2000, p = 2000 ---
+N = 2000, p = 2000
+Compute time: 5.311495 s
+Max |beta - beta_true|: 0.605765
+RMS |beta - beta_true|: 0.179134
+
+Compiling with icc -O3 -xHost...
+========================================================================
+ Running Benchmarks for Compiler: Intel ICC (-O3 -xHost)
+========================================================================
+
+--- Configuration: N = 20000, p = 50 ---
+N = 20000, p = 50
+Compute time: 0.004218 s
+Max |beta - beta_true|: 0.000163
+RMS |beta - beta_true|: 0.000061
+
+--- Configuration: N = 50000, p = 300 ---
+N = 50000, p = 300
+Compute time: 0.255398 s
+Max |beta - beta_true|: 0.000157
+RMS |beta - beta_true|: 0.000046
+
+--- Configuration: N = 2000, p = 2000 ---
+N = 2000, p = 2000
+Compute time: 2.131822 s
+Max |beta - beta_true|: 0.605765
+RMS |beta - beta_true|: 0.179134
+
+Compiling with icc -Ofast -xHost...
+========================================================================
+ Running Benchmarks for Compiler: Intel ICC (-Ofast -xHost)
+========================================================================
+
+--- Configuration: N = 20000, p = 50 ---
+N = 20000, p = 50
+Compute time: 0.004256 s
+Max |beta - beta_true|: 0.000163
+RMS |beta - beta_true|: 0.000061
+
+--- Configuration: N = 50000, p = 300 ---
+N = 50000, p = 300
+Compute time: 0.255344 s
+Max |beta - beta_true|: 0.000157
+RMS |beta - beta_true|: 0.000046
+
+--- Configuration: N = 2000, p = 2000 ---
+N = 2000, p = 2000
+Compute time: 2.120798 s
+Max |beta - beta_true|: 0.605765
+RMS |beta - beta_true|: 0.179134
+
+------------------------------------------------------------------------
+Loading Intel ICX (cesga/2020 + intel)...
+------------------------------------------------------------------------
+Intel(R) oneAPI DPC++/C++ Compiler 2021.3.0 (2021.3.0.20210619)
+Compiling with icx -O0...
+========================================================================
+ Running Benchmarks for Compiler: Intel ICX (-O0)
+========================================================================
+
+--- Configuration: N = 20000, p = 50 ---
+N = 20000, p = 50
+Compute time: 0.344925 s
+Max |beta - beta_true|: 0.000163
+RMS |beta - beta_true|: 0.000061
+
+--- Configuration: N = 50000, p = 300 ---
+N = 50000, p = 300
+Compute time: 39.176707 s
+Max |beta - beta_true|: 0.000157
+RMS |beta - beta_true|: 0.000046
+
+--- Configuration: N = 2000, p = 2000 ---
+N = 2000, p = 2000
+Compute time: 74.977205 s
+Max |beta - beta_true|: 0.605765
+RMS |beta - beta_true|: 0.179134
+
+Compiling with icx -O2 -xHost...
+========================================================================
+ Running Benchmarks for Compiler: Intel ICX (-O2 -xHost)
+========================================================================
+
+--- Configuration: N = 20000, p = 50 ---
+N = 20000, p = 50
+Compute time: 0.073883 s
+Max |beta - beta_true|: 0.000163
+RMS |beta - beta_true|: 0.000061
+
+--- Configuration: N = 50000, p = 300 ---
+N = 50000, p = 300
+Compute time: 5.769391 s
+Max |beta - beta_true|: 0.000157
+RMS |beta - beta_true|: 0.000046
+
+--- Configuration: N = 2000, p = 2000 ---
+N = 2000, p = 2000
+Compute time: 11.639902 s
+Max |beta - beta_true|: 0.605764
+RMS |beta - beta_true|: 0.179134
+
+Compiling with icx -O3 -xHost...
+========================================================================
+ Running Benchmarks for Compiler: Intel ICX (-O3 -xHost)
+========================================================================
+
+--- Configuration: N = 20000, p = 50 ---
+N = 20000, p = 50
+Compute time: 0.073796 s
+Max |beta - beta_true|: 0.000163
+RMS |beta - beta_true|: 0.000061
+
+--- Configuration: N = 50000, p = 300 ---
+N = 50000, p = 300
+Compute time: 5.750325 s
+Max |beta - beta_true|: 0.000157
+RMS |beta - beta_true|: 0.000046
+
+--- Configuration: N = 2000, p = 2000 ---
+N = 2000, p = 2000
+Compute time: 11.585232 s
+Max |beta - beta_true|: 0.605764
+RMS |beta - beta_true|: 0.179134
+
+Compiling with icx -Ofast -xHost...
+========================================================================
+ Running Benchmarks for Compiler: Intel ICX (-Ofast -xHost)
+========================================================================
+
+--- Configuration: N = 20000, p = 50 ---
+N = 20000, p = 50
+Compute time: 0.073940 s
+Max |beta - beta_true|: 0.000163
+RMS |beta - beta_true|: 0.000061
+
+--- Configuration: N = 50000, p = 300 ---
+N = 50000, p = 300
+Compute time: 5.765517 s
+Max |beta - beta_true|: 0.000157
+RMS |beta - beta_true|: 0.000046
+
+--- Configuration: N = 2000, p = 2000 ---
+N = 2000, p = 2000
+Compute time: 11.595440 s
+Max |beta - beta_true|: 0.605764
+RMS |beta - beta_true|: 0.179134
+
+All benchmark runs completed!
+
+*****************************************************************************
+*                                                                           *
+*                    JOB EFFICIENCY REPORT (seff 10372420)                   *
+*                                                                           *
+*****************************************************************************
+
+Job ID: 10372420
+Cluster: finisterrae3
+User/Group: curso344/ulc
+State: COMPLETED (exit code 0)
+Cores: 1
+CPU Utilized: 00:09:10
+CPU Efficiency: 98.74% of 00:09:17 core-walltime
+Job Wall-clock time: 00:09:17
+Memory Utilized: 116.18 MB
+Memory Efficiency: 1.42% of 8.00 GB
+
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ ++   Memory Efficiency is too small. Please review the requested memory. ++
+ ++ It seems that you do not need that much memory so we recommend        ++
+ ++ requesting less memory in other similar jobs.                         ++
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 
+*****************************************************************************
