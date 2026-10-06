@@ -25,7 +25,7 @@ run_benchmarks() {
     for cfg in "${CONFIGS[@]}"; do
         read -r N p <<< "$cfg"
         echo ""
-        echo "--- Configuration: N = $N, p =$p ---"
+        echo "--- Configuration: N = $N, p = $p ---"
         ./"$binary" "$N" "$p"
     done
     echo ""
@@ -62,4 +62,34 @@ echo "------------------------------------------------------------------------"
 module purge
 module load cesga/2020 intel/2021.3.0
 
-INTEL_OPT_LEVELS=("-O0
+INTEL_OPT_LEVELS=("-O0" "-O2 -xHost" "-O3 -xHost" "-Ofast -xHost")
+
+for opt in "${INTEL_OPT_LEVELS[@]}"; do
+    echo "Compiling with icc $opt..."
+    icc $opt -std=c11 -c gaussian.c -o gaussian.o
+    icc $opt -std=c11 -c linreg.c -o linreg.o
+    icc $opt -o linreg_icc linreg.o gaussian.o -lm
+
+    run_benchmarks "Intel ICC ($opt)" "linreg_icc"
+
+    rm -f *.o linreg_icc
+done
+
+# ==============================================================================
+# 3. Intel ICX Benchmarks
+# ==============================================================================
+echo "------------------------------------------------------------------------"
+echo "Loading Intel 2021.3.0 (icx)..."
+echo "------------------------------------------------------------------------"
+for opt in "${INTEL_OPT_LEVELS[@]}"; do
+    echo "Compiling with icx $opt..."
+    icx $opt -std=c11 -c gaussian.c -o gaussian.o
+    icx $opt -std=c11 -c linreg.c -o linreg.o
+    icx $opt -o linreg_icx linreg.o gaussian.o -lm
+
+    run_benchmarks "Intel ICX ($opt)" "linreg_icx"
+
+    rm -f *.o linreg_icx
+done
+
+echo "All benchmark runs completed!"
