@@ -1,5 +1,12 @@
-#include <time.h>
+#ifndef TIMER_H
+#define TIMER_H
+
+#if !defined(_POSIX_C_SOURCE)
+#define _POSIX_C_SOURCE 200809L
+#endif
+
 #include <stdint.h>
+#include <time.h>
 
 static inline void timestamp(struct timespec *ts)
 {
@@ -36,3 +43,5 @@ static inline double diff_seconds(const struct timespec *start,
 {
   return diff_nano(start, end) * 1e-9; // s
 }
+
+#endif /* TIMER_H */

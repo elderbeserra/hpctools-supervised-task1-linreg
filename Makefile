@@ -3,7 +3,7 @@
 # ============================================================================== 
 
 CC ?= gcc 
-CFLAGS ?= -O2 -Wall -std=c99 
+CFLAGS ?= -O2 -Wall -std=c99 -D_POSIX_C_SOURCE=200809L
 LDLIBS = -lm 
 TARGET = linreg 
 OBJS = linreg.o gaussian.o rng.o
