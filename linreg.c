@@ -81,6 +81,31 @@ static void check_solution(const double *beta, const double *beta_true, int p) {
   printf("RMS |beta - beta_true|: %.6f\n", rms);
 }
 
+// Naive (ijk) multiplication to compute XtX = X^T * X (p x p matrix)
+void compute_XtX_naive(const double *X, double *XtX, int N, int p) {
+    memset(XtX, 0, p * p * sizeof(double));
+    for (int i = 0; i < p; i++) {
+        for (int j = 0; j < p; j++) {
+            double sum = 0.0;
+            for (int k = 0; k < N; k++) {
+                sum += X[k * p + i] * X[k * p + j];
+            }
+            XtX[i * p + j] = sum;
+        }
+    }
+}
+
+// Naive multiplication to compute Xty = X^T * y (p x 1 vector)
+void compute_Xty_naive(const double *X, const double *y, double *Xty, int N, int p) {
+    for (int i = 0; i < p; i++) {
+        double sum = 0.0;
+        for (int k = 0; k < N; k++) {
+            sum += X[k * p + i] * y[k];
+        }
+        Xty[i] = sum;
+    }
+}
+
 /* -------------------------------------------------------------------------
  * main (DO NOT MODIFY, beyond adapting reporting/logging as needed)
  * ---------------------------------------------------------------------- */
