@@ -117,7 +117,7 @@ int main(int argc, char **argv) {
   int p = atoi(argv[2]);
   unsigned long seed = (argc > 3) ? strtoul(argv[3], NULL, 10) : 42;
 
-  rng_init(seed);
+  rng_seed((unsigned int)seed);
 
   double *X = (double *)malloc(N * p * sizeof(double));
   double *beta_true = (double *)malloc(p * sizeof(double));
@@ -134,12 +134,13 @@ int main(int argc, char **argv) {
   double noise_std = 0.01;
   generate_data(X, beta_true, y, N, p, noise_std);
 
-  // Measure execution time
-  timer_start();
+  struct timespec t_start, t_end;
+  timestamp(&t_start);
   compute_XtX_naive(X, XtX, N, p);
   compute_Xty_naive(X, y, Xty, N, p);
   gaussian_elimination_solve(XtX, Xty, beta, p);
-  double elapsed = timer_stop();
+  timestamp(&t_end);
+  double elapsed = diff_seconds(&t_start, &t_end);
 
   printf("N = %d, p = %d\n", N, p);
   printf("Compute time: %.6f s\n", elapsed);
