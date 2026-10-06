@@ -7,6 +7,12 @@
 #SBATCH --time=02:00:00
 #SBATCH --mem=8G
 
+set -euo pipefail
+
+cd "${SLURM_SUBMIT_DIR:-$(dirname "${BASH_SOURCE[0]}")}"
+
+CFLAGS_COMMON=(-std=c11 -D_POSIX_C_SOURCE=200809L)
+
 # Workload configurations (N p)
 CONFIGS=(
     "20000 50"
@@ -31,6 +37,23 @@ run_benchmarks() {
     echo ""
 }
 
+compile_linreg() {
+    local compiler=$1
+    local opt=$2
+    local out_binary=$3
+
+    echo "Compiling with $compiler $opt..."
+    $compiler $opt "${CFLAGS_COMMON[@]}" -c gaussian.c -o gaussian.o
+    $compiler $opt "${CFLAGS_COMMON[@]}" -c linreg.c -o linreg.o
+    $compiler $opt "${CFLAGS_COMMON[@]}" -c rng.c -o rng.o
+    $compiler $opt -o "$out_binary" linreg.o gaussian.o rng.o -lm
+}
+
+clean_objects() {
+    local binary=$1
+    rm -f gaussian.o linreg.o rng.o "$binary"
+}
+
 # ==============================================================================
 # 1. GCC 10.1.0 Benchmarks
 # ==============================================================================
@@ -43,14 +66,9 @@ module load cesga/2020 gcc/10.1.0
 GCC_OPT_LEVELS=("-O0" "-O2 -march=native" "-O3 -march=native" "-Ofast -march=native")
 
 for opt in "${GCC_OPT_LEVELS[@]}"; do
-    echo "Compiling with gcc $opt..."
-    gcc $opt -std=c11 -c gaussian.c -o gaussian.o
-    gcc $opt -std=c11 -c linreg.c -o linreg.o
-    gcc $opt -o linreg_gcc linreg.o gaussian.o -lm
-
+    compile_linreg gcc "$opt" linreg_gcc
     run_benchmarks "GCC 10.1.0 ($opt)" "linreg_gcc"
-
-    rm -f *.o linreg_gcc
+    clean_objects linreg_gcc
 done
 
 # ==============================================================================
@@ -65,14 +83,9 @@ module load cesga/2020 intel/2021.3.0
 INTEL_OPT_LEVELS=("-O0" "-O2 -xHost" "-O3 -xHost" "-Ofast -xHost")
 
 for opt in "${INTEL_OPT_LEVELS[@]}"; do
-    echo "Compiling with icc $opt..."
-    icc $opt -std=c11 -c gaussian.c -o gaussian.o
-    icc $opt -std=c11 -c linreg.c -o linreg.o
-    icc $opt -o linreg_icc linreg.o gaussian.o -lm
-
+    compile_linreg icc "$opt" linreg_icc
     run_benchmarks "Intel ICC ($opt)" "linreg_icc"
-
-    rm -f *.o linreg_icc
+    clean_objects linreg_icc
 done
 
 # ==============================================================================
@@ -82,14 +95,9 @@ echo "------------------------------------------------------------------------"
 echo "Loading Intel 2021.3.0 (icx)..."
 echo "------------------------------------------------------------------------"
 for opt in "${INTEL_OPT_LEVELS[@]}"; do
-    echo "Compiling with icx $opt..."
-    icx $opt -std=c11 -c gaussian.c -o gaussian.o
-    icx $opt -std=c11 -c linreg.c -o linreg.o
-    icx $opt -o linreg_icx linreg.o gaussian.o -lm
-
+    compile_linreg icx "$opt" linreg_icx
     run_benchmarks "Intel ICX ($opt)" "linreg_icx"
-
-    rm -f *.o linreg_icx
+    clean_objects linreg_icx
 done
 
 echo "All benchmark runs completed!"
